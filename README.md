@@ -19,6 +19,8 @@ This project is not affiliated with, endorsed by or connected to Flipper Devices
 | `08-smis-v0.2.md` | Synnefo Module Interface Standard v0.2 |
 | `09-power-architecture.md` | Power architecture v1 |
 | `firmware/board/` | Generated pin headers for both MCUs |
+| `research/` | Condensed research-agent reports behind the documents (limits listed in its README) |
+| `CHAT_SUMMARY.md` | Project log: decisions, findings, corrections, open items |
 | `tools/` | Scripts that solve and check the pin maps |
 
 ## Ground rules

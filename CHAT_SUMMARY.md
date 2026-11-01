@@ -14,7 +14,7 @@ A long brief described "Synnefo Handheld": a modular, portable electronics and a
 | MCU | commit to both STM32H743IIT6 (preferred) and STM32F429ZIT6 (fallback) via a swappable core module |
 | Sourcing | every part must come from Indian sellers with Indian stock; DigiKey/Mouser India and Tanotis count as imports; a part may be replaced only after it is shown to be import-only ("not found" is not enough) |
 | NFC | design both a PN532 module (buildable now) and an ST25R3916 module (blocked by sourcing) |
-| Process | prefer Indian-sourced parts; plan both rather than compromise; keep the licence open source and label the project under development |
+| Process | prefer Indian-sourced parts; plan both rather than compromise; open-source licence (later changed to GPL-3.0) and label the project under development |
 
 ## 3. What was produced (see the numbered documents)
 - `01` requirements matrix and decision log; `02` pin maps solved and checked by script for both MCUs; `03` core-module architecture; `04`/`05` Indian sourcing and compatibility; `06` NFC modules; `07` regulatory research; `08` SMIS v0.2; `09` power architecture; `firmware/board/` generated pin headers; `tools/` solver and checker; `research/` condensed agent reports.
@@ -45,4 +45,4 @@ A long brief described "Synnefo Handheld": a modular, portable electronics and a
 | Next work | firmware architecture and RTOS decision (Zephyr vs FreeRTOS), prototype plan without a custom PCB, KiCad skeleton and PN532 adapter board, then the first bill of materials |
 
 ## 7. Repository
-Published as a public repository named "Flip my flipper" under Apache-2.0 and marked under development. The ST pin-data clone and derived pin dumps are not included (third-party BSD-3 data); `tools/README.md` explains how to regenerate them.
+Published as a public repository named "Flip my flipper", marked under development. First published under Apache-2.0, then relicensed to GPL-3.0-or-later (like the Flipper Zero firmware) at the owner's request, with a contribution guide asking for pull requests; the GPL requires distributors of modified versions to publish their source but cannot force changes to be sent to this repository. The ST pin-data clone and derived pin dumps are not included (third-party BSD-3 data); `tools/README.md` explains how to regenerate them.

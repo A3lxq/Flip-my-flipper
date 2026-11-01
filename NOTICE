@@ -1,7 +1,14 @@
 Flip my flipper (Synnefo Handheld)
-Copyright 2026 Synnefo Cybersec, Networking and DevOps
+Copyright (C) 2026 Synnefo Cybersec, Networking and DevOps
 
-Licensed under the Apache License, Version 2.0 (see LICENSE).
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version. See LICENSE.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 Third-party data: pin and signal assignments in docs/tools were derived from
 STMicroelectronics' STM32_open_pin_data repository

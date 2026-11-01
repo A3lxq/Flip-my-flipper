@@ -20,6 +20,7 @@ This project is not affiliated with, endorsed by or connected to Flipper Devices
 | `09-power-architecture.md` | Power architecture v1 |
 | `firmware/board/` | Generated pin headers for both MCUs |
 | `research/` | Condensed research-agent reports behind the documents (limits listed in its README) |
+| `CONTRIBUTING.md` | How to contribute and what the licence requires |
 | `CHAT_SUMMARY.md` | Project log: decisions, findings, corrections, open items |
 | `tools/` | Scripts that solve and check the pin maps |
 
@@ -32,4 +33,8 @@ This project is not affiliated with, endorsed by or connected to Flipper Devices
 
 ## License
 
-Apache License 2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE). The license may be revisited before outside contributions are accepted.
+GNU General Public License v3.0 or later, the same family of licence used by the Flipper Zero firmware. See [LICENSE](LICENSE), [NOTICE](NOTICE) and [CONTRIBUTING.md](CONTRIBUTING.md).
+
+In short: anyone may use the source and build from it; if they distribute a modified version, they must publish their source under the GPL too. We ask that improvements be contributed back through pull requests, but the licence itself cannot require that.
+
+Earlier commits (the first two) were published under Apache-2.0; anyone who copied that version keeps those rights for that version.

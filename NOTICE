@@ -1,0 +1,11 @@
+Flip my flipper (Synnefo Handheld)
+Copyright 2026 Synnefo Cybersec, Networking and DevOps
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Third-party data: pin and signal assignments in docs/tools were derived from
+STMicroelectronics' STM32_open_pin_data repository
+(https://github.com/STMicroelectronics/STM32_open_pin_data), which is licensed
+under the BSD 3-Clause "New" or "Revised" License. That data is not
+redistributed in this repository; see tools/README.md to regenerate the pin
+dumps locally.

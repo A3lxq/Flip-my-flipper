@@ -1,0 +1,114 @@
+## H743: 140 I/O pins, 97 assigned, 7 reserved, 36 spare
+
+Instance choices: DISP_SPI=SPI1, EXP_SPI=SPI2, I2C_EXP=I2C2, I2C_SYS=I2C1, LINUX_USB=USB_OTG_HS, SD=SDMMC1, UART_CON=USART2, UART_ESP=USART1, UART_EXP=USART3, UART_LINUX=UART4, USB_FS=USB_OTG_FS
+
+| Pkg pin | Port | Function | Signal |
+|---|---|---|---|
+| 2 | PE3 | ESP_EN | GPIO |
+| 4 | PE5 | IR_TX | TIM15_CH1 |
+| 7 | PI8 | ESP_HS | GPIO |
+| 9 | PC14 | RESERVED | LSE crystal |
+| 10 | PC15 | RESERVED | LSE crystal |
+| 11 | PI9 | UART_LINUX_RX | UART4_RX |
+| 12 | PI10 | IRQ_P1 | GPIO |
+| 13 | PI11 | IDC_P8 | GPIO |
+| 16 | PF0 | I2C_EXP_SDA | I2C2_SDA |
+| 17 | PF1 | I2C_EXP_SCL | I2C2_SCL |
+| 18 | PF2 | PWR_INT | GPIO |
+| 19 | PF3 | ADC_H1 | ADC3_INP5 |
+| 20 | PF4 | ADC_H2 | ADC3_INP9 |
+| 21 | PF5 | ADC_H3 | ADC3_INP4 |
+| 24 | PF6 | ADC_H4 | ADC3_INP8 |
+| 25 | PF7 | IR_RX | TIM17_CH1 |
+| 26 | PF8 | BUZZER | TIM13_CH1 |
+| 27 | PF9 | DISP_BL | TIM14_CH1 |
+| 28 | PF10 | GPIO_H8 | GPIO |
+| 29 | PH0 | RESERVED | HSE crystal |
+| 30 | PH1 | RESERVED | HSE crystal |
+| 33 | PC1 | EXP_SPI_MOSI | SPI2_MOSI |
+| 40 | PA0 | UART_LINUX_TX | UART4_TX |
+| 42 | PA2 | UART_CON_TX | USART2_TX |
+| 43 | PH2 | CS_P4 | GPIO |
+| 44 | PH3 | CS_P5 | GPIO |
+| 45 | PH4 | IDC_P4 | GPIO |
+| 46 | PH5 | LED_G | GPIO |
+| 47 | PA3 | UART_CON_RX | USART2_RX |
+| 51 | PA5 | DISP_SPI_SCK | SPI1_SCK |
+| 52 | PA6 | DISP_SPI_MISO | SPI1_MISO |
+| 53 | PA7 | DISP_SPI_MOSI | SPI1_MOSI |
+| 59 | PF11 | GPIO_H9 | GPIO |
+| 60 | PF12 | LINUX_WAKE | GPIO |
+| 63 | PF13 | IRQ_P2 | GPIO |
+| 64 | PF14 | ESP_BOOT | GPIO |
+| 65 | PF15 | IRQ_P6 | GPIO |
+| 66 | PG0 | INT_B | GPIO |
+| 67 | PG1 | LINUX_PRSNT | GPIO |
+| 68 | PE7 | GPIO_H7 | GPIO |
+| 73 | PE10 | CS_P1 | GPIO |
+| 75 | PE12 | GPIO_H5 | GPIO |
+| 76 | PE13 | GPIO_H6 | GPIO |
+| 77 | PE14 | IDD_P8 | GPIO |
+| 79 | PB10 | UART_EXP_TX | USART3_TX |
+| 80 | PB11 | UART_EXP_RX | USART3_RX |
+| 83 | PH6 | IDC_P5 | GPIO |
+| 84 | PH7 | IRQ_P7 | GPIO |
+| 85 | PH8 | LED_B | GPIO |
+| 86 | PH9 | IDC_P6 | GPIO |
+| 87 | PH10 | LINUX_RST | GPIO |
+| 89 | PH12 | VIBRATION | GPIO |
+| 93 | PB13 | EXP_SPI_SCK | SPI2_SCK |
+| 94 | PB14 | LINUX_USB_DM | USB_OTG_HS_DM |
+| 95 | PB15 | LINUX_USB_DP | USB_OTG_HS_DP |
+| 96 | PD8 | IDD_P6 | GPIO |
+| 97 | PD9 | IDD_P7 | GPIO |
+| 98 | PD10 | IDD_P4 | GPIO |
+| 101 | PD13 | IDD_P5 | GPIO |
+| 104 | PD14 | IRQ_P4 | GPIO |
+| 106 | PG2 | DISP_DC | GPIO |
+| 107 | PG3 | IRQ_P3 | GPIO |
+| 108 | PG4 | LINUX_EN | GPIO |
+| 109 | PG5 | DISP_CS | GPIO |
+| 110 | PG6 | IDC_P1 | GPIO |
+| 111 | PG7 | IDC_P2 | GPIO |
+| 112 | PG8 | GPIO_H12 | GPIO |
+| 117 | PC8 | SD_D0 | SDMMC1_D0 |
+| 118 | PC9 | SD_D1 | SDMMC1_D1 |
+| 120 | PA9 | USB_VBUS | USB_OTG_FS_VBUS |
+| 121 | PA10 | UART_ESP_RX | USART1_RX |
+| 122 | PA11 | USB_FS_DM | USB_OTG_FS_DM |
+| 123 | PA12 | USB_FS_DP | USB_OTG_FS_DP |
+| 124 | PA13 | RESERVED | SWD |
+| 128 | PH13 | LED_R | GPIO |
+| 129 | PH14 | IDC_P3 | GPIO |
+| 130 | PH15 | CS_P3 | GPIO |
+| 131 | PI0 | IDC_P7 | GPIO |
+| 133 | PI2 | EXP_SPI_MISO | SPI2_MISO |
+| 134 | PI3 | BOOST_EN | GPIO |
+| 137 | PA14 | RESERVED | SWD |
+| 139 | PC10 | SD_D2 | SDMMC1_D2 |
+| 140 | PC11 | SD_D3 | SDMMC1_D3 |
+| 141 | PC12 | SD_CK | SDMMC1_CK |
+| 142 | PD0 | IDD_P2 | GPIO |
+| 143 | PD1 | IDD_P3 | GPIO |
+| 144 | PD2 | SD_CMD | SDMMC1_CMD |
+| 145 | PD3 | GPIO_H2 | GPIO |
+| 146 | PD4 | IRQ_P5 | GPIO |
+| 147 | PD5 | SD_CD | GPIO |
+| 151 | PD7 | GPIO_H3 | GPIO |
+| 153 | PG10 | GPIO_H10 | GPIO |
+| 157 | PG14 | GPIO_H11 | GPIO |
+| 160 | PG15 | CS_P2 | GPIO |
+| 161 | PB3 | RESERVED | SWO (JTDO), kept free for trace |
+| 164 | PB6 | UART_ESP_TX | USART1_TX |
+| 165 | PB7 | I2C_SYS_SDA | I2C1_SDA |
+| 167 | PB8 | I2C_SYS_SCL | I2C1_SCL |
+| 169 | PE0 | GPIO_H4 | GPIO |
+| 170 | PE1 | DISP_RST | GPIO |
+| 173 | PI4 | GPIO_H1 | GPIO |
+| 174 | PI5 | PWR_PG | GPIO |
+| 175 | PI6 | IRQ_P8 | GPIO |
+| 176 | PI7 | IDD_P1 | GPIO |
+
+Spare I/O: PE2 (1), PE4 (3), PE6 (5), PC13 (8), PC0 (32), PC2_C (34), PC3_C (35), PA1 (41), PA4 (50), PC4 (54), PC5 (55), PB0 (56), PB1 (57), PB2 (58), PE8 (69), PE9 (70), PE11 (74), PE15 (78), PH11 (88), PB12 (92), PD11 (99), PD12 (100), PD15 (105), PC6 (115), PC7 (116), PA8 (119), PI1 (132), PA15 (138), PD6 (150), PG9 (152), PG11 (154), PG12 (155), PG13 (156), PB4 (162), PB5 (163), PB9 (168)
+
+Deliberately avoided: PC13 (RTC/tamper pin, weak drive), PC2_C (analog-switch pad, kept free), PC3_C (analog-switch pad, kept free)

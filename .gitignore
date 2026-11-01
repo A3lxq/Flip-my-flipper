@@ -1,0 +1,7 @@
+# Third-party data and scratch files are not published
+datasheets/
+tools/pins_*.txt
+tools/t.c
+tools/tmp*.md
+__pycache__/
+*.pdf

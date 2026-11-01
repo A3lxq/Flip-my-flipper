@@ -1,0 +1,114 @@
+## F429: 114 I/O pins, 97 assigned, 7 reserved, 10 spare
+
+Instance choices: DISP_SPI=SPI1, EXP_SPI=SPI2, I2C_EXP=I2C2, I2C_SYS=I2C1, LINUX_USB=USB_OTG_HS, SD=SDIO, UART_CON=USART2, UART_ESP=USART1, UART_EXP=USART3, UART_LINUX=UART4, USB_FS=USB_OTG_FS
+
+| Pkg pin | Port | Function | Signal |
+|---|---|---|---|
+| 1 | PE2 | CS_P1 | GPIO |
+| 2 | PE3 | LED_B | GPIO |
+| 3 | PE4 | GPIO_H4 | GPIO |
+| 4 | PE5 | IR_TX | TIM9_CH1 |
+| 5 | PE6 | GPIO_H11 | GPIO |
+| 8 | PC14 | RESERVED | LSE crystal |
+| 9 | PC15 | RESERVED | LSE crystal |
+| 10 | PF0 | I2C_EXP_SDA | I2C2_SDA |
+| 11 | PF1 | I2C_EXP_SCL | I2C2_SCL |
+| 12 | PF2 | DISP_DC | GPIO |
+| 13 | PF3 | ADC_H1 | ADC3_IN9 |
+| 14 | PF4 | ADC_H2 | ADC3_IN14 |
+| 15 | PF5 | ADC_H3 | ADC3_IN15 |
+| 18 | PF6 | ADC_H4 | ADC3_IN4 |
+| 19 | PF7 | IR_RX | TIM11_CH1 |
+| 20 | PF8 | BUZZER | TIM13_CH1 |
+| 21 | PF9 | DISP_BL | TIM14_CH1 |
+| 22 | PF10 | IDD_P6 | GPIO |
+| 23 | PH0 | RESERVED | HSE crystal |
+| 24 | PH1 | RESERVED | HSE crystal |
+| 26 | PC0 | IDC_P5 | GPIO |
+| 27 | PC1 | BOOST_EN | GPIO |
+| 28 | PC2 | EXP_SPI_MISO | SPI2_MISO |
+| 29 | PC3 | EXP_SPI_MOSI | SPI2_MOSI |
+| 34 | PA0 | UART_LINUX_TX | UART4_TX |
+| 35 | PA1 | UART_LINUX_RX | UART4_RX |
+| 36 | PA2 | UART_CON_TX | USART2_TX |
+| 37 | PA3 | UART_CON_RX | USART2_RX |
+| 41 | PA5 | DISP_SPI_SCK | SPI1_SCK |
+| 42 | PA6 | DISP_SPI_MISO | SPI1_MISO |
+| 43 | PA7 | DISP_SPI_MOSI | SPI1_MOSI |
+| 44 | PC4 | ESP_BOOT | GPIO |
+| 45 | PC5 | LINUX_EN | GPIO |
+| 49 | PF11 | GPIO_H5 | GPIO |
+| 50 | PF12 | INT_B | GPIO |
+| 53 | PF13 | PWR_INT | GPIO |
+| 54 | PF14 | ESP_HS | GPIO |
+| 55 | PF15 | IDD_P7 | GPIO |
+| 56 | PG0 | SD_CD | GPIO |
+| 57 | PG1 | LINUX_WAKE | GPIO |
+| 58 | PE7 | IDD_P3 | GPIO |
+| 59 | PE8 | IDD_P4 | GPIO |
+| 60 | PE9 | IDD_P5 | GPIO |
+| 63 | PE10 | IRQ_P6 | GPIO |
+| 65 | PE12 | IDC_P6 | GPIO |
+| 66 | PE13 | IDC_P7 | GPIO |
+| 67 | PE14 | IDC_P8 | GPIO |
+| 68 | PE15 | GPIO_H10 | GPIO |
+| 69 | PB10 | UART_EXP_TX | USART3_TX |
+| 70 | PB11 | UART_EXP_RX | USART3_RX |
+| 74 | PB13 | EXP_SPI_SCK | SPI2_SCK |
+| 75 | PB14 | LINUX_USB_DM | USB_OTG_HS_DM |
+| 76 | PB15 | LINUX_USB_DP | USB_OTG_HS_DP |
+| 77 | PD8 | IRQ_P5 | GPIO |
+| 78 | PD9 | IRQ_P8 | GPIO |
+| 79 | PD10 | PWR_PG | GPIO |
+| 80 | PD11 | GPIO_H1 | GPIO |
+| 81 | PD12 | IDD_P1 | GPIO |
+| 82 | PD13 | DISP_CS | GPIO |
+| 85 | PD14 | LED_R | GPIO |
+| 86 | PD15 | GPIO_H2 | GPIO |
+| 87 | PG2 | LINUX_PRSNT | GPIO |
+| 88 | PG3 | IRQ_P1 | GPIO |
+| 89 | PG4 | DISP_RST | GPIO |
+| 90 | PG5 | ESP_EN | GPIO |
+| 91 | PG6 | IRQ_P7 | GPIO |
+| 92 | PG7 | IDC_P2 | GPIO |
+| 93 | PG8 | IDC_P3 | GPIO |
+| 96 | PC6 | GPIO_H7 | GPIO |
+| 97 | PC7 | GPIO_H8 | GPIO |
+| 98 | PC8 | SD_D0 | SDIO_D0 |
+| 99 | PC9 | SD_D1 | SDIO_D1 |
+| 100 | PA8 | CS_P5 | GPIO |
+| 101 | PA9 | USB_VBUS | USB_OTG_FS_VBUS |
+| 102 | PA10 | UART_ESP_RX | USART1_RX |
+| 103 | PA11 | USB_FS_DM | USB_OTG_FS_DM |
+| 104 | PA12 | USB_FS_DP | USB_OTG_FS_DP |
+| 105 | PA13 | RESERVED | SWD |
+| 109 | PA14 | RESERVED | SWD |
+| 111 | PC10 | SD_D2 | SDIO_D2 |
+| 112 | PC11 | SD_D3 | SDIO_D3 |
+| 113 | PC12 | SD_CK | SDIO_CK |
+| 114 | PD0 | LINUX_RST | GPIO |
+| 115 | PD1 | VIBRATION | GPIO |
+| 116 | PD2 | SD_CMD | SDIO_CMD |
+| 117 | PD3 | GPIO_H3 | GPIO |
+| 118 | PD4 | IRQ_P2 | GPIO |
+| 119 | PD5 | IRQ_P3 | GPIO |
+| 122 | PD6 | GPIO_H9 | GPIO |
+| 123 | PD7 | IRQ_P4 | GPIO |
+| 124 | PG9 | CS_P4 | GPIO |
+| 125 | PG10 | CS_P2 | GPIO |
+| 126 | PG11 | GPIO_H12 | GPIO |
+| 127 | PG12 | CS_P3 | GPIO |
+| 128 | PG13 | IDD_P8 | GPIO |
+| 129 | PG14 | IDC_P1 | GPIO |
+| 132 | PG15 | GPIO_H6 | GPIO |
+| 133 | PB3 | RESERVED | SWO (JTDO), kept free for trace |
+| 134 | PB4 | IDC_P4 | GPIO |
+| 136 | PB6 | UART_ESP_TX | USART1_TX |
+| 137 | PB7 | I2C_SYS_SDA | I2C1_SDA |
+| 139 | PB8 | I2C_SYS_SCL | I2C1_SCL |
+| 141 | PE0 | IDD_P2 | GPIO |
+| 142 | PE1 | LED_G | GPIO |
+
+Spare I/O: PC13 (7), PA4 (40), PB0 (46), PB1 (47), PB2 (48), PE11 (64), PB12 (73), PA15 (110), PB5 (135), PB9 (140)
+
+Deliberately avoided: PC13 (RTC/tamper pin, weak drive), PB2 (BOOT1 strap)

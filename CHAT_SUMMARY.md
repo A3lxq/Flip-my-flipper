@@ -33,6 +33,12 @@ A long brief described "Synnefo Handheld": a modular, portable electronics and a
 - The pin-count estimate fell from about 110 to 89 when buttons and port controls moved onto I²C expanders, then rose to 97 when the two-wire ID lines were added.
 - The very first ST datasheet downloads failed; pin data came from ST's open GitHub pin database instead.
 
+## 5b. Later sessions (1-2 Nov 2026)
+- **SMIS v0.2 and power architecture** (`08-`, `09-`): 10-contact box header on every port, two-wire module ID, per-port discrete protection, BQ24075 charger, two 3.3 V bucks, 1.5 A 5 V budget. Pin maps re-solved (97 pins assigned).
+- **Firmware architecture and RTOS** (`10-`): layered design, SPI arbiter, radio policy gate, power manager. Recommendation Zephyr 4.5.0 (PROPOSED), with three de-risk builds first. ST's RFAL (SLA0052) and USB library (SLA0044) cannot enter a distributed GPL binary.
+- **Licence:** relicensed from Apache-2.0 to GPL-3.0-or-later at the owner's request (Flipper-style), with `CONTRIBUTING.md`.
+- **OS alternatives and Linux-first question** (`11-`, `research/12-14`): NuttX is the runner-up on driver coverage; Flipper One is Linux plus an RP2350 FreeRTOS co-processor and has no NFC/RFID/sub-GHz; the kernel has no CC1101, ST25R3916 or PN532-over-SPI driver; Linux modules are not confirmed in Indian stock. Recommendation: keep MCU-first V1 and add Linux as a pluggable module (hybrid), not Linux-only.
+
 ## 6. Open items
 | Item | Needed |
 |---|---|
@@ -42,7 +48,7 @@ A long brief described "Synnefo Handheld": a modular, portable electronics and a
 | PN532 | buy one V3 board and measure voltages, DIP mapping and current |
 | Power | confirm Evelta stock; read the non-Q1 TPS61088 and PCA9555/TCA9535 datasheets; cell datasheet, polarity and BIS number |
 | Regulatory | lawyer review of the 13 questions; Gazette texts for 13.56 MHz, 5 GHz and the 2026 possession rules |
-| Next work | firmware architecture and RTOS decision (Zephyr vs FreeRTOS), prototype plan without a custom PCB, KiCad skeleton and PN532 adapter board, then the first bill of materials |
+| Next work | accept or change the RTOS recommendation after the three de-risk builds; prototype plan without a custom PCB; KiCad skeleton and PN532 adapter board; MCU-to-Linux protocol later; then the first bill of materials |
 
 ## 7. Repository
 Published as a public repository named "Flip my flipper", marked under development. First published under Apache-2.0, then relicensed to GPL-3.0-or-later (like the Flipper Zero firmware) at the owner's request, with a contribution guide asking for pull requests; the GPL requires distributors of modified versions to publish their source but cannot force changes to be sent to this repository. The ST pin-data clone and derived pin dumps are not included (third-party BSD-3 data); `tools/README.md` explains how to regenerate them.

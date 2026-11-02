@@ -19,5 +19,9 @@ Condensed versions of the reports produced by research agents during the project
 | `08-regulatory-spectrum-eta.md` | Licence-exempt bands and equipment type approval |
 | `09-regulatory-bis-tec-battery.md` | BIS, TEC, e-waste, Legal Metrology, battery shipping |
 | `10-law-landscape.md` | Telecom Act 2023, IT Act, Flipper Zero status, jammers, CERT-In |
+| `11-zephyr-vs-freertos.md` | RTOS comparison, driver coverage and ST licence findings |
+| `12-rtos-alternatives.md` | NuttX, RT-Thread, ThreadX, Embassy, ChibiOS, Mbed OS, libopencm3, STM32duino |
+| `13-flipper-one-and-linux-hardware.md` | Flipper One architecture, Linux compute modules, Indian stock, kernel driver gaps |
+| `14-linux-tool-ecosystem.md` | Linux security/radio/NFC tool ecosystem, hybrid designs, licence compatibility |
 
 The compiled, decision-oriented versions are the numbered documents in the repository root.

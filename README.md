@@ -18,6 +18,8 @@ This project is not affiliated with, endorsed by or connected to Flipper Devices
 | `07-india-regulatory.md` | Indian regulatory research (not legal advice) |
 | `08-smis-v0.2.md` | Synnefo Module Interface Standard v0.2 |
 | `09-power-architecture.md` | Power architecture v1 |
+| `10-firmware-architecture.md` | Firmware architecture v0.1 and RTOS decision record |
+| `11-os-options-and-linux-architecture.md` | Other OS options and the Linux-first (Flipper One-style) question |
 | `firmware/board/` | Generated pin headers for both MCUs |
 | `research/` | Condensed research-agent reports behind the documents (limits listed in its README) |
 | `CONTRIBUTING.md` | How to contribute and what the licence requires |

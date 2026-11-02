@@ -171,3 +171,7 @@ Per-transaction SPI reconfiguration and bus arbitration are the SPI layer's job 
 4. Decide the SM-S connector family and the 1-wire ID chip.
 5. Indian regulatory research for 13.56 MHz equipment.
 6. Verify RFAL on STM32F4/H7 and read the X-CUBE-NFC6 licence.
+
+## 10. KiCad skeletons
+
+Generated projects for both variants are in `hardware/kicad/` (see its README for what was checked and what is unverified).

@@ -22,6 +22,7 @@ Condensed versions of the reports produced by research agents during the project
 | `11-zephyr-vs-freertos.md` | RTOS comparison, driver coverage and ST licence findings |
 | `12-rtos-alternatives.md` | NuttX, RT-Thread, ThreadX, Embassy, ChibiOS, Mbed OS, libopencm3, STM32duino |
 | `13-flipper-one-and-linux-hardware.md` | Flipper One architecture, Linux compute modules, Indian stock, kernel driver gaps |
+| `15-nucleo-boards-india.md` | Indian availability of NUCLEO-F429ZI, H743ZI and nearby test boards |
 | `14-linux-tool-ecosystem.md` | Linux security/radio/NFC tool ecosystem, hybrid designs, licence compatibility |
 
 The compiled, decision-oriented versions are the numbered documents in the repository root.

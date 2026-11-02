@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "synnefo")(type "KiCad")(uri "${KIPRJMOD}/../lib/synnefo.kicad_sym")(options "")(descr "Synnefo skeleton symbols"))
+)

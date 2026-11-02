@@ -43,6 +43,9 @@ A long brief described "Synnefo Handheld": a modular, portable electronics and a
 - Toolchain installed (Zephyr 4.5.0, SDK 1.0.1, arm-zephyr-eabi GCC 14.3.0, west 1.5.0); three test apps built on both Nucleo boards. Results (build level only): LVGL + ST7796S fits both MCUs with partial buffers (F429 65,600 B RAM single / 96,320 B double; a full frame overflows the F429 by 145,472 B but fits the H743); two USB device controllers build in one image (H743 needs a custom OTG-HS node, checked against ST's header); per-device SPI settings (PN532 LSB-first, CC1101 mode 0, ST25R3916 mode 1) build with a negative test and verified compiled values. Pitfall: the STM32 SPI driver compares config pointers, so use one config struct per device.
 - The owner accepted **Zephyr 4.5.0 as the working RTOS** (R23); hardware verification is still open. Files: `firmware/zephyr/`.
 
+## 5d. KiCad skeletons (2 Nov 2026)
+- `hardware/kicad/`: generated KiCad projects for the PN532 adapter (schematic + placement-only PCB) and a block-level ST25R3916 schematic, plus a shared symbol/footprint library and the generator script. Checked with the official KiCad 10.0.8 container: adapter ERC 0 violations with the intended netlist, PCB DRC without clearance violations (unrouted nets expected), ST25R3916 ERC 4 intentional open items. Unverified: the PN532 V3 header order, the ST25R3916 pin table, antenna and matching network.
+
 ## 6. Open items
 | Item | Needed |
 |---|---|

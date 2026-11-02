@@ -5,3 +5,10 @@ tools/t.c
 tools/tmp*.md
 __pycache__/
 *.pdf
+
+# KiCad
+*-backups/
+*.kicad_prl
+fp-info-cache
+*.lck
+_autosave-*

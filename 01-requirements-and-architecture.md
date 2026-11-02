@@ -28,7 +28,7 @@ Nothing here is VALIDATED. All figures are planning assumptions and must be chec
 | R20 | Regulatory guardrails: no jamming; sub-GHz transmit locked to 865-868 MHz and 433.05-434.79 MHz within power and duty-cycle limits; receive-only default; India profile default; ETA/BIS/e-waste checked before any sale (details and open questions in 07-india-regulatory.md) | brief §3, §20; research 2026-11-01 | PROPOSED | Firmware region-lock and duty-cycle tests; lawyer review |
 | R21 | SMIS v0.2: one 10-contact keyed box header on all ports; two-wire module ID (per-port IDD/IDC, 24-series EEPROM); separate 3V3_P/5V_P per port; discrete per-port protection; no hot-plug in V1 (08-smis-v0.2.md) | research 2026-11-01 | PROPOSED | Descriptor read on 8 ports; port-off and fault tests |
 | R22 | Power architecture v1: BQ24075 charger, MAX17048 gauge, two 3.3 V bucks, 5 V boost (1.5 A budget), USB-C sink (09-power-architecture.md) | research 2026-11-01 | PROPOSED | Rail, charger and brown-out tests |
-| R23 | Firmware architecture v0.1 (layers, module manager, SPI arbiter, radio policy gate, power manager) and RTOS recommendation Zephyr 4.5.0, pending de-risk builds (10-firmware-architecture.md) | research 2026-11-01 | PROPOSED | Three de-risk builds; same tests on both MCUs |
+| R23 | Firmware architecture v0.1 (layers, module manager, SPI arbiter, radio policy gate, power manager) and **Zephyr 4.5.0 as the working RTOS**; build-level de-risk done 2026-11-02, hardware tests pending (10-firmware-architecture.md, firmware/zephyr/) | user acceptance 2026-11-02 | CONFIRMED (Zephyr 4.5.0 as working RTOS) / OPEN (hardware verification) | Dual-USB enumeration, SPI waveforms, panel init values, real RAM budget on hardware |
 | R24 | Linux module stays optional and pluggable (hybrid MCU + Linux, Flipper One-style division of labour); not Linux-only (11-os-options-and-linux-architecture.md) | research 2026-11-02 | PROPOSED | Real-time and sourcing checks before choosing a module |
 | R15 | MCU, RTOS, connectors, charger IC, regulators | §8-12 | OPEN | Decision log |
 | R16 | Indian regulatory position (WPC/DoT/TEC/BIS, import) | §3 | OPEN: not researched yet | Primary-source review |
@@ -250,7 +250,7 @@ See `08-smis-v0.2.md` and `09-power-architecture.md`. Pin maps re-solved with th
 
 ## 19. Firmware architecture
 
-See `10-firmware-architecture.md`. RTOS recommendation: Zephyr 4.5.0 (PROPOSED, not accepted). ST's RFAL (SLA0052) and USB library (SLA0044) cannot be used in a distributed GPL binary.
+See `10-firmware-architecture.md`. RTOS: Zephyr 4.5.0 accepted as the working RTOS on 2026-11-02 (CONFIRMED); the three build-level de-risk checks passed (firmware/zephyr/derisk/RESULTS.md); hardware verification is still open. ST's RFAL (SLA0052) and USB library (SLA0044) cannot be used in a distributed GPL binary.
 
 ## 20. OS options and the Linux-first question
 

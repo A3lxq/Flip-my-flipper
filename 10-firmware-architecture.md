@@ -1,6 +1,6 @@
 # Firmware architecture v0.1
 
-Status: PROPOSED draft, written before any firmware exists. The RTOS decision is recorded in §14 and stays OPEN until you accept it. Hardware inputs: `08-smis-v0.2.md`, `09-power-architecture.md`, `02-pin-maps.md`, `06-nfc-modules.md`, `07-india-regulatory.md`. Numbers in memory tables are placeholders to be measured, not facts.
+Status: PROPOSED draft, written before any firmware exists. The RTOS decision is recorded in §14 (accepted 2026-11-02). Hardware inputs: `08-smis-v0.2.md`, `09-power-architecture.md`, `02-pin-maps.md`, `06-nfc-modules.md`, `07-india-regulatory.md`. Numbers in memory tables are placeholders to be measured, not facts.
 
 ## 1. Goals and constraints
 
@@ -156,7 +156,7 @@ Rule: the F429 build must link and run within its RAM with all V1 features; an H
 
 ## 14. RTOS decision record
 
-**Status: PROPOSED recommendation, not accepted.** Evidence: `research/11-zephyr-vs-freertos.md` (checked 2026-11-01; nothing was built or measured; ST's site was unreachable so ST licence texts come from ST's GitHub repositories and third-party copies).
+**Status: ACCEPTED by the project owner on 2026-11-02 as the working RTOS (Zephyr 4.5.0); verification on hardware is still open.** Evidence: `research/11-zephyr-vs-freertos.md` (checked 2026-11-01; nothing was built or measured; ST's site was unreachable so ST licence texts come from ST's GitHub repositories and third-party copies).
 
 **Recommendation: Zephyr 4.5.0** (released 2026-10-28), moving to the next LTS (4.6, planned April 2027) when it ships. FreeRTOS 11.3.x with STM32Cube is the alternative.
 
@@ -188,11 +188,12 @@ Rule: the F429 build must link and run within its RAM with all V1 features; an H
 
 **Alternatives assessed (2026-11-02):** ten further options were researched (`research/12-rtos-alternatives.md`, `11-os-options-and-linux-architecture.md`). Apache NuttX is the runner-up on driver coverage (in-tree CC1101, PN532, ST7796, MCUboot); FreeRTOS + Cube (HAL/LL only) is the runner-up on licensing simplicity. Zephyr remains the recommendation. ChibiOS's kernel is GPL-3.0-only; STM32duino brings ST-licensed USB code; Mbed OS is end of life. No option has a usable ST25R3916 driver.
 
-**De-risk first (before accepting):**
-1. Build the Zephyr LVGL sample for `nucleo_f429zi` and `nucleo_h743zi` and record real RAM/flash.
-2. Prove a custom `usbotg_hs` node on the H743 and two USB controllers in one image.
-3. Prove PN532 LSB-first SPI through a per-device `spi_config` on a shared bus.
-If these fail, fall back to FreeRTOS + Cube with TinyUSB.
+**De-risk builds (done 2026-11-02, build level only; nothing ran on hardware).** Toolchain: Zephyr 4.5.0 with Zephyr SDK 1.0.1 (arm-zephyr-eabi GCC 14.3.0). Setup, test applications and results are in `firmware/zephyr/` and `firmware/zephyr/derisk/RESULTS.md`.
+1. **LVGL footprint** (Zephyr's LVGL sample with an ST7796S, shell and logging on): builds on both Nucleo boards. F429: 381,636 B flash (18 %), 65,600 B RAM (33 % of 192 KB) with one 10 % partial buffer, 96,320 B (49 %) with two. A full 320x480 frame **does not fit the F429 (RAM overflows by 145,472 B)**; on the H743 it fits (342,144 B, 65 % of 512 KB). So partial-frame rendering is mandatory on the F429, as assumed in §10, and leaves roughly 96–126 KB of its 192 KB for everything else.
+2. **Two USB controllers in one image:** builds on both boards with two independent device contexts and a CDC-ACM port on each. The H743 needs a custom `usbotg_hs` devicetree node (its dtsi defines only `usbotg_fs`); its address, interrupt numbers and clock bit match ST's `stm32h743xx.h`, and the linked image holds two UDC instances. Zephyr's driver source states it supports one OTG-HS and one OTG-FS controller in a build. Enumeration on hardware is untested.
+3. **Per-device SPI settings on a shared bus:** builds on both boards; PN532 (mode 0, LSB first, 1 MHz), CC1101 (mode 0, 6.5 MHz) and ST25R3916 (mode 1, 5 MHz) each get their own `spi_config` from the devicetree. A negative test confirmed the compile-time checks bite; the compiled structs hold the intended values; the STM32 SPI driver sets polarity, phase, bit order and prescaler per config. **Rule found:** the driver skips reconfiguration when the config *pointer* is unchanged, so use one config struct per device and never edit one in place. Waveforms on silicon are untested.
+
+**Status:** all three build-level risks are retired and Zephyr 4.5.0 is accepted as the working RTOS. Remaining risks need hardware: dual-USB enumeration, SPI waveforms and LSB-first behaviour, the ST7796S panel's real init values (the gamma tables in the test overlays are placeholders), and the real RAM budget once USB, FAT, SD, the ESP32 link and module drivers are added. If hardware tests fail, the fallbacks remain NuttX or FreeRTOS + Cube.
 
 **Testing on both MCUs:** host unit tests for the module manager, state machines, descriptor parser, power manager and the radio policy (with fake time and mocked SPI/GPIO); hardware-in-the-loop on one F429 and one H743 board over SWD with a USB-serial pass/fail and a logic analyser for SPI mode/bit order/clock; per-peripheral checks (SPI loopback, SD/FAT stress, USB enumeration, EXTI polarity, bootloader update/rollback/power loss); bench-test the region lock and duty cycle into a dummy load before any air transmission. Run the same list on both MCUs.
 

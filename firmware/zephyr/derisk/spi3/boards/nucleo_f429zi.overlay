@@ -1,0 +1,30 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later
+ * Shared expansion SPI (SPI2) with three SM-S modules. Pins from 02-pin-maps.md (STM32F429ZIT6):
+ * SCK PB13, MISO PC2, MOSI PC3; CS_P1..3 = PE2, PG10, PG12; IRQ_P1..3 = PG3, PD4, PD5. */
+&spi2 {
+	status = "okay";
+	pinctrl-0 = <&spi2_sck_pb13 &spi2_miso_pc2 &spi2_mosi_pc3>;
+	pinctrl-names = "default";
+	cs-gpios = <&gpioe 2 GPIO_ACTIVE_LOW>, <&gpiog 10 GPIO_ACTIVE_LOW>, <&gpiog 12 GPIO_ACTIVE_LOW>;
+
+	mod_pn532: mod_pn532@0 {
+		compatible = "synnefo,module-spi";
+		reg = <0>;
+		spi-max-frequency = <1000000>;
+		spi-lsb-first;
+		irq-gpios = <&gpiog 3 GPIO_ACTIVE_LOW>;
+	};
+	mod_cc1101: mod_cc1101@1 {
+		compatible = "synnefo,module-spi";
+		reg = <1>;
+		spi-max-frequency = <6500000>;
+		irq-gpios = <&gpiod 4 GPIO_ACTIVE_HIGH>;
+	};
+	mod_st25r3916: mod_st25r3916@2 {
+		compatible = "synnefo,module-spi";
+		reg = <2>;
+		spi-max-frequency = <5000000>;
+		spi-cpha;
+		irq-gpios = <&gpiod 5 GPIO_ACTIVE_HIGH>;
+	};
+};

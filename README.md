@@ -21,6 +21,7 @@ This project is not affiliated with, endorsed by or connected to Flipper Devices
 | `10-firmware-architecture.md` | Firmware architecture v0.1 and RTOS decision record |
 | `11-os-options-and-linux-architecture.md` | Other OS options and the Linux-first (Flipper One-style) question |
 | `firmware/board/` | Generated pin headers for both MCUs |
+| `firmware/zephyr/` | Zephyr 4.5.0 toolchain setup and the three build-level de-risk test apps with results |
 | `research/` | Condensed research-agent reports behind the documents (limits listed in its README) |
 | `CONTRIBUTING.md` | How to contribute and what the licence requires |
 | `CHAT_SUMMARY.md` | Project log: decisions, findings, corrections, open items |

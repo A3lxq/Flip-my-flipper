@@ -1,0 +1,18 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later
+ * STM32F429 already defines usbotg_hs (stm32f405.dtsi) with the embedded full-speed PHY.
+ */
+&usbotg_hs {
+	pinctrl-0 = <&usb_otg_hs_dm_pb14 &usb_otg_hs_dp_pb15>;
+	pinctrl-names = "default";
+	status = "okay";
+
+	cdc_acm_uart1: cdc_acm_uart1 {
+		compatible = "zephyr,cdc-acm-uart";
+	};
+};
+
+&usbotg_fs {
+	cdc_acm_uart0: cdc_acm_uart0 {
+		compatible = "zephyr,cdc-acm-uart";
+	};
+};

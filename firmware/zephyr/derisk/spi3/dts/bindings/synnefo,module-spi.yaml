@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+description: SMIS SM-S module sharing one SPI bus; its bus settings come from the module descriptor
+compatible: "synnefo,module-spi"
+include: spi-device.yaml
+properties:
+  irq-gpios:
+    type: phandle-array
+    description: Module interrupt line; polarity (active high or low) set in the gpio flags

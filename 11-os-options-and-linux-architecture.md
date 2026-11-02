@@ -26,7 +26,7 @@ Ranking from the research agent, with this project's reading:
 
 Common gap: **no option has a usable ST25R3916 driver under a compatible licence**; the project must write one (ST's RFAL cannot enter a distributed GPL binary, see `10-firmware-architecture.md` §14).
 
-**Decision impact:** Zephyr remains the recommendation. NuttX is the runner-up if the Zephyr de-risk builds fail and driver coverage matters more than ecosystem size; FreeRTOS + Cube is the runner-up if licensing simplicity and Flipper-Zero-like structure matter more. The firmware's OS wrapper keeps the choice replaceable.
+**Decision impact:** Zephyr 4.5.0 was accepted as the working RTOS on 2026-11-02 after the build-level de-risk checks. NuttX is the runner-up if the Zephyr de-risk builds fail and driver coverage matters more than ecosystem size; FreeRTOS + Cube is the runner-up if licensing simplicity and Flipper-Zero-like structure matter more. The firmware's OS wrapper keeps the choice replaceable.
 
 ## 3. What Flipper One actually is (public sources)
 

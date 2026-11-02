@@ -1,0 +1,36 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ * STM32H743 defines only usbotg_fs in the SoC dtsi (usbotg_hs exists for H723, H745, H7A3).
+ * This node is modelled on dts/arm/st/h7/stm32h723.dtsi, set to full speed on the
+ * embedded PHY (PB14/PB15). Address, IRQ numbers and clock bit are the H723 values;
+ * they must be checked against the H743 reference manual (RM0433) before hardware use.
+ */
+/ {
+	soc {
+		usbotg_hs: usb@40040000 {
+			compatible = "st,stm32-otghs";
+			reg = <0x40040000 0x40000>;
+			interrupts = <77 0>, <74 0>, <75 0>;
+			interrupt-names = "otghs", "ep1_out", "ep1_in";
+			num-bidir-endpoints = <9>;
+			ram-size = <4096>;
+			maximum-speed = "full-speed";
+			clocks = <&rcc STM32_CLOCK(AHB1, 25)>,
+				 <&rcc STM32_SRC_HSI48 USB_SEL(3)>;
+			phys = <&otghs_fs_phy>;
+			pinctrl-0 = <&usb_otg_hs_dm_pb14 &usb_otg_hs_dp_pb15>;
+			pinctrl-names = "default";
+			status = "okay";
+
+			cdc_acm_uart1: cdc_acm_uart1 {
+				compatible = "zephyr,cdc-acm-uart";
+			};
+		};
+	};
+};
+
+&usbotg_fs {
+	cdc_acm_uart0: cdc_acm_uart0 {
+		compatible = "zephyr,cdc-acm-uart";
+	};
+};

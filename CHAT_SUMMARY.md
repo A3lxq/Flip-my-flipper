@@ -39,6 +39,10 @@ A long brief described "Synnefo Handheld": a modular, portable electronics and a
 - **Licence:** relicensed from Apache-2.0 to GPL-3.0-or-later at the owner's request (Flipper-style), with `CONTRIBUTING.md`.
 - **OS alternatives and Linux-first question** (`11-`, `research/12-14`): NuttX is the runner-up on driver coverage; Flipper One is Linux plus an RP2350 FreeRTOS co-processor and has no NFC/RFID/sub-GHz; the kernel has no CC1101, ST25R3916 or PN532-over-SPI driver; Linux modules are not confirmed in Indian stock. Recommendation: keep MCU-first V1 and add Linux as a pluggable module (hybrid), not Linux-only.
 
+## 5c. Zephyr de-risk builds and RTOS acceptance (2 Nov 2026)
+- Toolchain installed (Zephyr 4.5.0, SDK 1.0.1, arm-zephyr-eabi GCC 14.3.0, west 1.5.0); three test apps built on both Nucleo boards. Results (build level only): LVGL + ST7796S fits both MCUs with partial buffers (F429 65,600 B RAM single / 96,320 B double; a full frame overflows the F429 by 145,472 B but fits the H743); two USB device controllers build in one image (H743 needs a custom OTG-HS node, checked against ST's header); per-device SPI settings (PN532 LSB-first, CC1101 mode 0, ST25R3916 mode 1) build with a negative test and verified compiled values. Pitfall: the STM32 SPI driver compares config pointers, so use one config struct per device.
+- The owner accepted **Zephyr 4.5.0 as the working RTOS** (R23); hardware verification is still open. Files: `firmware/zephyr/`.
+
 ## 6. Open items
 | Item | Needed |
 |---|---|
@@ -48,7 +52,7 @@ A long brief described "Synnefo Handheld": a modular, portable electronics and a
 | PN532 | buy one V3 board and measure voltages, DIP mapping and current |
 | Power | confirm Evelta stock; read the non-Q1 TPS61088 and PCA9555/TCA9535 datasheets; cell datasheet, polarity and BIS number |
 | Regulatory | lawyer review of the 13 questions; Gazette texts for 13.56 MHz, 5 GHz and the 2026 possession rules |
-| Next work | accept or change the RTOS recommendation after the three de-risk builds; prototype plan without a custom PCB; KiCad skeleton and PN532 adapter board; MCU-to-Linux protocol later; then the first bill of materials |
+| Next work | hardware checks on Nucleo-F429ZI/H743ZI boards (dual-USB enumeration, SPI waveforms, panel init values, real RAM budget); prototype plan without a custom PCB; KiCad skeleton and PN532 adapter board; MCU-to-Linux protocol later; then the first bill of materials |
 
 ## 7. Repository
 Published as a public repository named "Flip my flipper", marked under development. First published under Apache-2.0, then relicensed to GPL-3.0-or-later (like the Flipper Zero firmware) at the owner's request, with a contribution guide asking for pull requests; the GPL requires distributors of modified versions to publish their source but cannot force changes to be sent to this repository. The ST pin-data clone and derived pin dumps are not included (third-party BSD-3 data); `tools/README.md` explains how to regenerate them.

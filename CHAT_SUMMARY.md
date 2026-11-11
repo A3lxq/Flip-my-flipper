@@ -61,6 +61,12 @@ A long brief described "Synnefo Handheld": a modular, portable electronics and a
 | Regulatory | lawyer review of the 13 questions; Gazette texts for 13.56 MHz, 5 GHz and the 2026 possession rules |
 | Next work | hardware checks on Nucleo-F429ZI/H743ZI boards (dual-USB enumeration, SPI waveforms, panel init values, real RAM budget); prototype plan without a custom PCB; KiCad skeleton and PN532 adapter board; MCU-to-Linux protocol later; then the first bill of materials |
 
+## 5f. Re-verification, stock re-check and quote drafts (11 Nov 2026)
+- Re-ran everything re-runnable: pin maps re-solved to identical results; generated headers unchanged and compile; all Zephyr builds reproduce the recorded numbers (from the committed sources, in a path without spaces, because spaces in overlay paths break Zephyr); KiCad regenerated files unchanged, ERC/DRC/netlist identical to the committed outputs; pinout tables and diagrams regenerate identically; link and stale-text checks.
+- Corrected stale requirement rows R16 (regulatory research done, legal review pending) and R15 (MCU and RTOS confirmed, rest proposed).
+- Stock re-check: unchanged except the NUCLEO-H753ZI at Hubtronics, now ₹5,225 with 1 in stock and Buy Now; the test apps build for `nucleo_h753zi`.
+- Drafted (not sent) quote and stock-confirmation requests: `sourcing/quote-requests.md`.
+
 ## 6b. Handoff
 A handoff document for the next person or session is in `HANDOFF.md` (written 2026-11-11).
 

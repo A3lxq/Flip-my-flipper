@@ -1,10 +1,12 @@
 # Handoff: Flip my flipper (Synnefo Handheld)
 
-Written 2026-11-11 for whoever picks this project up next (a person, or a new Claude Code session). Read this first, then `README.md`, then `01-requirements-and-architecture.md`.
+Written and re-verified 2026-11-11 for whoever picks this project up next (a person, or a new Claude Code session). Read this first, then `README.md`, then `01-requirements-and-architecture.md`.
 
-**Status in one paragraph.** The project is a modular, portable electronics and authorised security-research handheld designed in India, with parts sourced from Indian sellers only. It is at the end of Phase 0 (requirements, architecture and feasibility). Nothing has been built, flashed or powered on. What exists is documents, a solved pin map for two candidate MCUs, a module interface standard (SMIS v0.2), a power architecture, a firmware architecture with Zephyr 4.5.0 accepted as the working RTOS, build-level firmware test applications, KiCad skeletons for two NFC modules, pinout tables and diagrams, and a lot of sourcing and regulatory research. All research was done by automated agents from web pages and datasheets and is **unverified** until checked against the primary document. Stock and prices in this repository were captured on **2026-11-01 and 2026-11-02** and are probably out of date.
+**This repository is now the only copy.** At the owner's request, the local working folder, the local Zephyr toolchain and workspace, and the KiCad Docker image were deleted right after the final push of this document. To resume, clone the repository and rebuild the environment (section 7).
 
-Repository: https://github.com/A3lxq/Flip-my-flipper (public, GPL-3.0-or-later, marked under development). The owner's local working copy is a folder named `Hand Held PROJECT`.
+**Status in one paragraph.** The project is a modular, portable electronics and authorised security-research handheld designed in India, with parts sourced from Indian sellers only. It is at the end of Phase 0 (requirements, architecture and feasibility). Nothing has been built, flashed or powered on. What exists is documents, a solved pin map for two candidate MCUs, a module interface standard (SMIS v0.2), a power architecture, a firmware architecture with Zephyr 4.5.0 accepted as the working RTOS, build-level firmware test applications, KiCad skeletons for two NFC modules, pinout tables and diagrams, and a lot of sourcing and regulatory research. All research was done by automated agents from web pages and datasheets and is **unverified** until checked against the primary document. Stock and prices were captured on **2026-11-01 and 2026-11-02**; the key ones were re-checked on 2026-11-11 (section 5) and are still snapshots that go stale quickly.
+
+Repository: https://github.com/A3lxq/Flip-my-flipper (public, GPL-3.0-or-later, marked under development). The owner's working folder was named `Hand Held PROJECT` (deleted locally, see above).
 
 ---
 
@@ -43,7 +45,7 @@ PROPOSED, awaiting the owner:
 | Regulatory guardrails (R20) | no jamming, sub-GHz TX limited to 865-868 MHz and 433.05-434.79 MHz within power and duty-cycle limits, India profile by default |
 | Port numbering P1-P8 and module assignment | proposed in `hardware/pinouts/module-pinouts.md`, never fixed elsewhere |
 
-Stale rows in `01-requirements-and-architecture.md`: R16 says the regulatory position is "not researched yet" (it was researched, see `07-india-regulatory.md`), and R12 and R15 are still OPEN. Update them when next editing that file.
+Corrected on 2026-11-11: requirement rows R16 (regulatory research done, legal review pending) and R15 (MCU and RTOS confirmed, the rest proposed). R12 (V1 feature scope) is still OPEN; a scope is proposed in section 3 of `01-requirements-and-architecture.md`.
 
 ## 3. Architecture in brief
 
@@ -66,12 +68,13 @@ Stale rows in `01-requirements-and-architecture.md`: R16 says the regulatory pos
 | `07-india-regulatory.md` | licence-exempt bands, type approval, BIS, TEC, e-waste, laws; 13 questions for a lawyer |
 | `08-smis-v0.2.md`, `09-power-architecture.md`, `10-firmware-architecture.md`, `11-os-options-and-linux-architecture.md` | the standards and architecture documents |
 | `firmware/board/` | generated per-MCU pin headers, same names on both chips |
-| `firmware/zephyr/` | toolchain setup and three build-level test applications with results (`derisk/RESULTS.md`) |
+| `firmware/zephyr/` | toolchain setup and three build-level test applications with results (`firmware/zephyr/derisk/RESULTS.md`) |
 | `hardware/kicad/` | KiCad projects (PN532 adapter schematic + placement-only PCB, block-level ST25R3916 schematic), shared library, generator, ERC/DRC outputs |
 | `hardware/pinouts/` | module pinout tables with knowledge tags, system and SM-S connection diagrams, generator |
+| `sourcing/quote-requests.md` | drafts of quote and stock-confirmation requests to Indian sellers (**not sent**) |
 | `research/` | condensed research-agent reports 01-15 (not verbatim; limits in its README) |
 | `CHAT_SUMMARY.md` | chronological log of decisions, findings and corrections |
-| `datasheets/` | local only, git-ignored: clone of ST's open pin data (BSD-3) |
+| (not in the repo) | `datasheets/` (a clone of ST's open pin data, BSD-3) and `tools/pins_*.txt` (pin dumps derived from it) were local only and git-ignored; regenerate them with `tools/README.md` |
 
 ## 5. What was actually verified, and what was not
 
@@ -80,6 +83,20 @@ Verified by running something:
 - Generated firmware headers compile with gcc for both chips and expose identical names.
 - Zephyr 4.5.0 builds (SDK 1.0.1, GCC 14.3.0): LVGL with an ST7796S, two USB device controllers in one image, and per-device SPI settings on a shared bus, all on `nucleo_f429zi` and `nucleo_h743zi`. Measured: F429 uses 381,636 B flash and 65,600 B RAM with one 10 % partial display buffer (96,320 B with two); a full 320x480 frame overflows the F429 RAM by 145,472 B and fits the H743.
 - KiCad 10.0.8: adapter schematic 0 ERC violations with the intended netlist; adapter PCB no clearance, courtyard or edge violations (23 unrouted nets expected); ST25R3916 skeleton 4 ERC errors, all the intentional open pins.
+
+**Re-verified on 2026-11-11** (everything that can be re-run, from the committed files):
+
+| Check | Result |
+|---|---|
+| Pin maps re-solved from scratch for both MCUs, `verify.py` | byte-identical to the committed maps; 97 assignments, 14 unique interrupt lines |
+| Generated firmware headers regenerated and compiled for both chips | no diff, both compile, identical names |
+| All Zephyr builds rebuilt from the committed sources | **identical** flash/RAM numbers to `RESULTS.md`, including the F429 full-frame overflow of 145,472 B |
+| Same Zephyr test apps for `nucleo_h753zi` (new) | build; LVGL 385,896 B flash / 65,664 B RAM, two-USB 67,424 / 23,000 B, shared SPI 35,132 / 7,104 B |
+| KiCad files regenerated, ERC/DRC/netlist re-run in the KiCad 10.0.8 container | no diff; ERC and DRC reports and the netlist identical to the committed ones |
+| Pinout tables and diagrams regenerated | Markdown and PNG identical |
+| Link and stale-text checks over all Markdown | no broken links; one stale row found and fixed (R16), R15 also refreshed |
+| Secrets and personal-path scan of the staged files | clean |
+| Stock re-check of the key listings (Hubtronics, Evelta, DNA Tech, Lion Circuits) | unchanged except **NUCLEO-H753ZI at Hubtronics: ₹5,225 incl. GST, 1 in stock, Buy Now** (`research/15-nucleo-boards-india.md`) |
 
 **Never run on hardware:** dual-USB enumeration, SPI waveforms and LSB-first behaviour, the ST7796S panel's real init values (the gamma tables in the test overlays are placeholders), the real RAM budget with USB/FAT/SD/ESP32/module drivers, every power rail, the charger, the NFC modules.
 
@@ -95,30 +112,31 @@ Verified by running something:
 6. **The 144-pin Nucleo boards** do not carry the 176-pin H743's pins (for example PI2), so they can only test part of the final pin map.
 7. **Gaps with no Indian-stocked part found:** per-port current-limited load switches with a fault flag at confirmed stock, ST25R3916, a buck-boost converter, genuine JST SH, 0.8 mm board-to-board connectors, 1-wire ID chips.
 8. The ERC/DRC and diagram numbers refer to pin-map draft 2.
+9. **Zephyr builds fail if the overlay path contains a space** (the repository folder was named `Hand Held PROJECT`). Copy `firmware/zephyr/derisk` to a path without spaces before building.
 
 ## 7. How to resume on a machine
 
-Local environment as left on 2026-11-02 (it may have changed; check):
-- **Zephyr:** `~/zephyr-work/` holds the venv, the west workspace (`ws/`), Zephyr SDK 1.0.1 and build folders. `source ~/zephyr-work/env.sh` (a copy is `firmware/zephyr/env.sh.example`), then `west build ...` as in `firmware/zephyr/README.md`. About 5 GB.
-- **KiCad checks:** they ran in Docker with the official image. **That image was no longer on the machine on 2026-11-11**; re-pull it with `docker pull kicad/kicad:10.0` (about 0.8 GB download, 3.5 GB on disk) before repeating them; commands are in `hardware/kicad/README.md`.
-- **Regenerate files:** `tools/pinmap.py`, `verify.py`, `genboard.py` (see `tools/README.md`; needs the ST pin data clone in `datasheets/`); `python3 hardware/kicad/tools/gen_kicad.py hardware/kicad`; `python hardware/pinouts/gen_pinouts.py <repo root>` (needs matplotlib).
-- **Disk** was at about 89 % used; avoid large installs.
-- **Memory file** for Claude Code: `synnefo-handheld-project.md` in the project's Claude Code memory folder under `~/.claude/projects/` (outside the repo, on the owner's machine).
+The previous local environment was deleted (see the top of this file). To rebuild it:
+- **Get the repository:** `git clone https://github.com/A3lxq/Flip-my-flipper` (put it in a folder name without spaces if you will build the Zephyr tests in place).
+- **Zephyr 4.5.0 and SDK 1.0.1:** follow `firmware/zephyr/README.md` (uv/Python 3.12 venv, shallow Zephyr clone, `west config manifest.project-filter`, `west update`, `west sdk install --version 1.0.1 -t arm-zephyr-eabi`). About 5 GB, plus about 0.4 GB for builds; 17 GB of disk were free on 2026-11-11.
+- **KiCad checks:** `docker pull kicad/kicad:10.0` (about 0.8 GB download, 3.5 GB on disk) and the commands in `hardware/kicad/README.md`.
+- **Regenerate files:** `tools/README.md` (needs a clone of ST's `STM32_open_pin_data`, BSD-3) for the pin dumps, then `tools/pinmap.py`, `verify.py`, `genboard.py`; `python3 hardware/kicad/tools/gen_kicad.py hardware/kicad`; `python hardware/pinouts/gen_pinouts.py <repo root>` (needs matplotlib; its SVG output differs on every run, the Markdown and PNG are reproducible).
+- **Claude Code memory:** a short project memory file stays under `~/.claude/projects/` on the owner's machine and points here; the repository is authoritative.
 - Before any commit: scan staged files for secrets and personal paths, e.g. `git ls-files -z | xargs -0 grep -nIiE "gmail|token|password|secret|api[_-]?key|/ho[m]e/|/t[m]p/"`.
 
 ## 8. What to do next, in order
 
 Needs the owner:
 1. Decide the 3.3 V-only ID phase (SMIS v0.2 section 6) or ask for the always-on ID rail.
-2. Request written quotes and lead times: Hubtronics (NUCLEO-F429ZI, H743ZI, H753ZI), Evelta (F429ZI stock and ship-from; BQ24075, MAX17048, TPS61088 stock), Lion Circuits (H753ZI ship-from and invoice), DNA Tech and others for bare STM32H743 chips; ST authenticity proof for the F429ZIT6 chips.
-3. Buy test hardware: a PN532 V3 board (DNA Tech had 50 at ₹317.43), a CC1101 868 MHz board, an RDM6300, a Nucleo-F429ZI, and either an H743-class board or the NUCLEO-H723ZG (DNA Tech had 3 in stock). Measure and photograph the breakout headers.
+2. **Send the drafted requests** in `sourcing/quote-requests.md` (nothing has been sent): Hubtronics (F429ZI, H743ZI restock; H753ZI), Evelta (F429ZI stock; BQ24075, MAX17048, TPS61088, TLV62568), Lion Circuits (H753ZI ship-from and invoice), DNA Tech (F429ZIT6 authenticity, H743/H753 chips, PN532 board details), Indus Technologies (F429ZIT6 source). Record replies in its tracking table.
+3. Buy test hardware: a PN532 V3 board (DNA Tech, ₹317.43, 50 in stock on 2026-11-11), a CC1101 868 MHz board, an RDM6300, a Nucleo-F429ZI (out of stock at Hubtronics; Evelta ambiguous), and an H7 board: **NUCLEO-H753ZI at Hubtronics (₹5,225 incl. GST, 1 in stock on 2026-11-11; our test apps build for it)** or the NUCLEO-H723ZG (DNA Tech, 3 in stock). Measure and photograph the breakout headers.
 4. Fetch from a machine that can reach st.com: ST25R3916B datasheet DS13541, current DS12484, AN5276, AN5240, AN5322, AN5592, UM3007 and the X-NUCLEO-NFC08A1 schematic, and the X-CUBE-NFC6 licence file.
 5. Send the 13 questions in `07-india-regulatory.md` to a lawyer or test lab before any sale.
 
 Engineering:
 6. Add the CC1/CC2 ADC pins and re-solve the pin maps (see section 6, gap 1); regenerate headers, connector table, diagrams.
 7. Check Indian stock and pin compatibility of the bare STM32H753, H563 and F439 chips (the substitutes for the H743/F429).
-8. Run the hardware checks of the three Zephyr test items on Nucleo boards.
+8. Run the hardware checks of the three Zephyr test items on Nucleo boards (F429ZI and H753ZI/H743ZI).
 9. Finish the PN532 adapter once a breakout has been measured, then route it; read the ST documents and finish the ST25R3916 module.
 10. Remaining SMIS and power items: fuse hold currents, EEPROM datasheets, per-port limits, non-Q1 TPS61088 and PCA9555/TCA9535 datasheets, cell datasheet and BIS number.
 11. Write the ST25R3916 driver independently; write the SPI arbiter and module manager (`10-firmware-architecture.md`).
@@ -130,4 +148,5 @@ Engineering:
 2. Is the proposed port numbering and module assignment acceptable (P1 CC1101, P2/P3 NFC, P8 RDM6300)?
 3. Should the pin maps be re-solved now to add CC1/CC2, accepting that some pins may move?
 4. Is buying an H723ZG (a different MCU) acceptable as a stand-in H7 test board?
-5. Who will contact sellers and the lawyer, and by when?
+5. Who will send the seller requests and contact the lawyer, and by when?
+6. Buy the in-stock NUCLEO-H753ZI (1 unit at Hubtronics on 2026-11-11) before it sells out?

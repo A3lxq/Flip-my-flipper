@@ -34,3 +34,19 @@ Notes: the NUCLEO-H753ZI is ST's recommended substitute for the discontinued H74
 - No confirmed in-stock listing of either exact board from an Indian seller. Hubtronics lists both and about twenty other Nucleo-144 boards as "Notify when available", so they can probably order them; Evelta's F429ZI is the closest to available but ambiguous.
 - Under R17, nothing here shows the boards are import-only.
 - Actions: ask Hubtronics for lead time on F429ZI and H743ZI (and H753ZI); ask Evelta to confirm F429ZI stock and ship-from; ask Lion Circuits for ship-from and an invoice for the H753ZI; check Robu, Robocraze, Probots, Thingbits, Sunrom and Quartz Components by hand.
+
+## Re-check on 2026-11-11 (pages opened again)
+
+| Item | 2026-11-02 | 2026-11-11 |
+|---|---|---|
+| Hubtronics NUCLEO-F429ZI | ₹4,012 incl. GST, 0 in stock | unchanged (₹4,012, "0 in Stock", notify) |
+| Hubtronics NUCLEO-H743ZI | ₹3,122.28, 0 in stock | unchanged (0 in stock, notify) |
+| **Hubtronics NUCLEO-H753ZI** | ₹5,225, notify when available (category page) | **₹5,225 incl. GST (₹4,427.97 + 18 % GST), "Stock: 1 in Stock", "Buy Now"** (product page https://hubtronics.in/st/nucleo-h753zi?page=4) |
+| Hubtronics H743ZI2, H723ZG, H563ZI | notify | unchanged (notify) |
+| Evelta NUCLEO-F429ZI | ₹2,645 ex GST, contradictory stock labels | unchanged (₹3,121.10 incl. GST; "in stock Sold Out", schema OutOfStock; new banner: orders 7-11 Nov may take up to 72 hours to dispatch) |
+| DNA Tech STM32F429ZIT6 | ₹649, stock 50 | unchanged (₹649 incl. GST, stock 50, importer ElectroSource, origin China; price valid until 2026-12-09) |
+| DNA Tech PN532 NFC RFID V3 module | ₹317.43, stock 50 | unchanged (₹317.43 incl. GST, stock 50; the PN532 shield is listed at stock 0) |
+| DNA Tech NUCLEO-H723ZG | ₹4,707.22, stock 3 | unchanged (stock 3) |
+| Lion Circuits NUCLEO-H753ZI | ₹5,084.63, "In Stock", ships in 7-10 days, ship-from unstated | unchanged |
+
+Reading: the NUCLEO-H753ZI at Hubtronics (1 unit) is the first H7-class Nucleo-144 board seen in confirmed Indian stock. Our test apps build for `nucleo_h753zi` (`firmware/zephyr/derisk/RESULTS.md` section 4). The F429ZI and H743ZI remain out of stock at Hubtronics. Draft requests to the sellers are in `sourcing/quote-requests.md`.

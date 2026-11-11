@@ -38,6 +38,7 @@ west build -p always -b nucleo_f429zi $D/spi3 -d build/spi3_f429
 
 ## Caveats
 
+- **Paths with spaces break the builds.** Zephyr's devicetree preprocessing fails on an overlay path containing a space (error: `fatal error: ...Hand: No such file or directory`). The repository folder name has a space, so copy `firmware/zephyr/derisk` to a space-free folder (for example `~/zephyr-work/derisk`) before building; the results below were produced that way.
 - The boards used are Nucleo-144 development boards, not our hardware. The overlays use pins from `02-pin-maps.md` where the 144-pin package has them; the 176-pin H743 map uses pins that package lacks (for example PI2), so SPI2 on the H743 test uses the Nucleo's pins.
 - The ST7796S gamma tables in `derisk/lvgl/*.overlay` are **placeholders copied from Zephyr's reference shield**; they must be replaced with the real panel's values.
 - The H743 OTG-HS node in `derisk/usb2/boards/nucleo_h743zi.overlay` was modelled on the H723 definition and its address, interrupt numbers and clock bit were checked against ST's `stm32h743xx.h`; they have not been tested on silicon.

@@ -25,6 +25,7 @@ This project is not affiliated with, endorsed by or connected to Flipper Devices
 | `hardware/kicad/` | KiCad skeletons for the PN532 adapter and the ST25R3916 module, with ERC/DRC outputs |
 | `firmware/board/` | Generated pin headers for both MCUs |
 | `firmware/zephyr/` | Zephyr 4.5.0 toolchain setup and the three build-level de-risk test apps with results |
+| `sourcing/quote-requests.md` | Drafts of quote and stock-confirmation requests to Indian sellers (not sent) |
 | `research/` | Condensed research-agent reports behind the documents (limits listed in its README) |
 | `CONTRIBUTING.md` | How to contribute and what the licence requires |
 | `CHAT_SUMMARY.md` | Project log: decisions, findings, corrections, open items |

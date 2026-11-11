@@ -38,5 +38,18 @@ Checks done: compile-time assertions on the devicetree properties (a negative te
 **Pitfall found:** the driver skips reconfiguration when the `struct spi_config` pointer equals the last one used (`spi_context_configured()` compares pointers, not contents). Keep one config struct per device and never modify one in place.
 **Not verified:** actual waveforms and LSB-first behaviour on the silicon, the real SPI clock (quantised to a prescaler division of the peripheral clock, not measured), the Nucleo uses different pins from our maps for some signals.
 
+## 4. Re-verification and the NUCLEO-H753ZI (2026-11-11)
+
+All builds above were rebuilt from the committed sources (copied to a path without spaces) on 2026-11-11 and gave **identical** flash and RAM numbers, including the F429 full-frame overflow.
+The same three test applications also build for **`nucleo_h753zi`** (STM32H753, the H743 line plus crypto, and the H7 Nucleo board that Hubtronics listed in stock on 2026-11-11), using copies of the H743 overlays (`boards/nucleo_h753zi.overlay`):
+
+| App | Flash | RAM |
+|---|---|---|
+| LVGL + ST7796S, 10 % partial buffer | 385,896 B (18.4 %) | 65,664 B (12.5 % of 512 KB) |
+| two USB device controllers | 67,424 B (3.2 %) | 23,000 B (4.4 %) |
+| shared SPI, per-device settings | 35,132 B (1.7 %) | 7,104 B (1.4 %) |
+
+Build level only; nothing has run on hardware.
+
 ## What this does and does not change
 Build-level risk for all three items is retired; the remaining risks need hardware: dual-USB enumeration, SPI waveforms and the display panel's real init values. See `10-firmware-architecture.md` §14.

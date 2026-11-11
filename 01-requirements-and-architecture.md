@@ -31,8 +31,8 @@ Nothing here is VALIDATED. All figures are planning assumptions and must be chec
 | R23 | Firmware architecture v0.1 (layers, module manager, SPI arbiter, radio policy gate, power manager) and **Zephyr 4.5.0 as the working RTOS**; build-level de-risk done 2026-11-02, hardware tests pending (10-firmware-architecture.md, firmware/zephyr/) | user acceptance 2026-11-02 | CONFIRMED (Zephyr 4.5.0 as working RTOS) / OPEN (hardware verification) | Dual-USB enumeration, SPI waveforms, panel init values, real RAM budget on hardware |
 | R24 | Linux module stays optional and pluggable (hybrid MCU + Linux, Flipper One-style division of labour); not Linux-only (11-os-options-and-linux-architecture.md) | research 2026-11-02 | PROPOSED | Real-time and sourcing checks before choosing a module |
 | R25 | KiCad skeletons for both NFC modules: PN532 adapter (schematic + placement-only PCB) and ST25R3916 module (block-level schematic), checked with KiCad 10.0.8 (hardware/kicad/) | user request 2026-11-02 | CONFIRMED (skeletons made) / OPEN (breakout pinout, ST documents, routing) | ERC/DRC reports in hardware/kicad/checks/; real-board measurements |
-| R15 | MCU, RTOS, connectors, charger IC, regulators | §8-12 | OPEN | Decision log |
-| R16 | Indian regulatory position (WPC/DoT/TEC/BIS, import) | §3 | OPEN: not researched yet | Primary-source review |
+| R15 | MCU, RTOS, connectors, charger IC, regulators | §8-12 | OPEN, partly resolved: MCU (R18) and RTOS (R23) CONFIRMED; connector family (R21), charger, regulators and boost (R22) PROPOSED, pending Indian stock confirmation and hardware tests | Decision log; hardware tests |
+| R16 | Indian regulatory position (WPC/DoT/TEC/BIS, import) | §3 | OPEN (research done 2026-11-01, not legally reviewed): licence-exempt band limits, ETA, BIS, TEC, e-waste and law summarised in `07-india-regulatory.md` from partly secondary sources; 13 questions for a lawyer or lab; Gazette texts for 13.56 MHz, 5 GHz and the 2026 possession rules unread | Lawyer or test-lab review before any sale |
 
 ## 2. Conflicts, gaps and risks found in the brief
 

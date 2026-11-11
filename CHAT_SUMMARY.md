@@ -46,6 +46,10 @@ A long brief described "Synnefo Handheld": a modular, portable electronics and a
 ## 5d. KiCad skeletons (2 Nov 2026)
 - `hardware/kicad/`: generated KiCad projects for the PN532 adapter (schematic + placement-only PCB) and a block-level ST25R3916 schematic, plus a shared symbol/footprint library and the generator script. Checked with the official KiCad 10.0.8 container: adapter ERC 0 violations with the intended netlist, PCB DRC without clearance violations (unrouted nets expected), ST25R3916 ERC 4 intentional open items. Unverified: the PN532 V3 header order, the ST25R3916 pin table, antenna and matching network.
 
+## 5e. Module pinouts and diagrams (2 Nov 2026)
+- `hardware/pinouts/`: `module-pinouts.md` (every proposed module with its pins and a status tag: datasheet-read, vendor guide, my recollection, unknown), `system-connections.png/.svg` (each module's connection to the MCU core with the F429 and H743 pins) and `sm-s-port-matrix.png/.svg` (contact-by-contact connection of the CC1101, PN532 and ST25R3916 modules, plus the SM-U and SM-I classes). Generated from the solved pin maps by `gen_pinouts.py`.
+- Gaps found: USB-C CC1/CC2 ADC pins and BQ24075 control lines (EN2, CE, SYSOFF) are not in the pin maps; port numbering P1-P8 and the module assignment were never fixed (proposed in this document); module-side vendor header orders (PN532 V3, CC1101 boards, RDM6300) are unverified.
+
 ## 6. Open items
 | Item | Needed |
 |---|---|
@@ -56,6 +60,9 @@ A long brief described "Synnefo Handheld": a modular, portable electronics and a
 | Power | confirm Evelta stock; read the non-Q1 TPS61088 and PCA9555/TCA9535 datasheets; cell datasheet, polarity and BIS number |
 | Regulatory | lawyer review of the 13 questions; Gazette texts for 13.56 MHz, 5 GHz and the 2026 possession rules |
 | Next work | hardware checks on Nucleo-F429ZI/H743ZI boards (dual-USB enumeration, SPI waveforms, panel init values, real RAM budget); prototype plan without a custom PCB; KiCad skeleton and PN532 adapter board; MCU-to-Linux protocol later; then the first bill of materials |
+
+## 6b. Handoff
+A handoff document for the next person or session is in `HANDOFF.md` (written 2026-11-11).
 
 ## 7. Repository
 Published as a public repository named "Flip my flipper", marked under development. First published under Apache-2.0, then relicensed to GPL-3.0-or-later (like the Flipper Zero firmware) at the owner's request, with a contribution guide asking for pull requests; the GPL requires distributors of modified versions to publish their source but cannot force changes to be sent to this repository. The ST pin-data clone and derived pin dumps are not included (third-party BSD-3 data); `tools/README.md` explains how to regenerate them.

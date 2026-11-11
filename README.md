@@ -10,6 +10,7 @@ This project is not affiliated with, endorsed by or connected to Flipper Devices
 
 | File | Contents |
 |---|---|
+| `HANDOFF.md` | **Start here when picking the project up**: status, decisions, what was verified, gaps, how to resume, next steps |
 | `01-requirements-and-architecture.md` | Requirements traceability matrix, decisions (CONFIRMED / PROPOSED / OPEN), risks |
 | `02-pin-maps.md` | Pin maps for STM32H743IIT6 and STM32F429ZIT6 |
 | `03-core-module.md` | Swappable MCU core-module architecture and connector table |
@@ -20,6 +21,7 @@ This project is not affiliated with, endorsed by or connected to Flipper Devices
 | `09-power-architecture.md` | Power architecture v1 |
 | `10-firmware-architecture.md` | Firmware architecture v0.1 and RTOS decision record |
 | `11-os-options-and-linux-architecture.md` | Other OS options and the Linux-first (Flipper One-style) question |
+| `hardware/pinouts/` | Module pinout tables (with how well each pinout is known) and the connection diagrams (system and SM-S port) |
 | `hardware/kicad/` | KiCad skeletons for the PN532 adapter and the ST25R3916 module, with ERC/DRC outputs |
 | `firmware/board/` | Generated pin headers for both MCUs |
 | `firmware/zephyr/` | Zephyr 4.5.0 toolchain setup and the three build-level de-risk test apps with results |

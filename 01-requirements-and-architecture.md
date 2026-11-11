@@ -260,3 +260,7 @@ See `11-os-options-and-linux-architecture.md` and `research/12-` to `14-`. Zephy
 ## 21. KiCad skeletons
 
 See `hardware/kicad/README.md`: PN532 adapter (ERC 0 violations, netlist verified, placement-only PCB with no clearance violations) and a block-level ST25R3916 schematic (4 intentional ERC open items). Both are skeletons: the PN532 V3 header order and the ST25R3916 pin table/antenna design are still unverified.
+
+## 22. Module pinouts and diagrams
+
+See `hardware/pinouts/module-pinouts.md`. New gaps: USB-C CC1/CC2 ADC pins and BQ24075 EN2/CE/SYSOFF are missing from the pin maps; P1-P8 numbering is only proposed there.
